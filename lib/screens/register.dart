@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/services/auth.dart';
 import 'login.dart';
@@ -8,11 +6,10 @@ import 'dart:convert';
 import 'home.dart';
 
 class Register extends StatefulWidget{
-  	const Register({Key? key}) : super(key: key);
+  const Register({Key? key}) : super(key: key);
 
-	@override
-	// ignore: library_private_types_in_public_api
-	_RegisterState createState() => _RegisterState();
+  @override
+	State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register>{
@@ -125,13 +122,7 @@ class _RegisterState extends State<Register>{
 													}
 												),
 												const SizedBox(height: 12),
-												FlatButton(
-													color: Colors.blueAccent,
-													disabledColor: Colors.grey,
-													shape: RoundedRectangleBorder(
-														borderRadius:
-														BorderRadius.circular(20.0)
-													),
+												ElevatedButton(
 													onPressed: () {
 														if (_formKey.currentState!.validate()) {
 															_register();
@@ -211,13 +202,7 @@ class _RegisterState extends State<Register>{
 			SharedPreferences localStorage = await SharedPreferences.getInstance();
 			localStorage.setString('token', json.encode(body['token']));
 			localStorage.setString('user', json.encode(data));
-			// ignore: use_build_context_synchronously
-			Navigator.pushReplacement(
-				context,
-				MaterialPageRoute(
-					builder: (context) => const Home()
-				),
-			);
+			navigationToHome();
 		} else {
 			final error = body['error'];
 			showErrorMsg(error.toString());
@@ -225,5 +210,12 @@ class _RegisterState extends State<Register>{
 		setState(() {
 			_isLoading = false;
 		});
+	}
+
+  Future<void> navigationToHome() async{
+		final route = MaterialPageRoute(
+			builder: (context) => const Home(),
+		);
+		await Navigator.push(context, route);
 	}
 }

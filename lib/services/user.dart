@@ -3,8 +3,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class UserService{
-	final url = dotenv.env['GOREST_URL'];
-	final token = dotenv.env['GOREST_TOKEN'];
+	// final url = dotenv.env['GOREST_URL'];
+	// final token = dotenv.env['GOREST_TOKEN'];
+
+	final url = 'https://gorest.co.in/public/v2';
+	final token = 'a4d37090c066e1f173928c5e3ab1b3f1b5132cb1613760f61a24f5c02e9d3337';
 
 	listUser () async{
 		final uri = Uri.parse('$url/users');

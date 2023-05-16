@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 			title: 'Flutter Test',
 			debugShowCheckedModeBanner: false,
 			home: const CheckAuth(),
-			darkTheme: ThemeData(brightness: Brightness.dark, accentColor: Colors.blueAccent),
+			darkTheme: ThemeData(brightness: Brightness.dark),
 			themeMode: ThemeMode.dark,
 		);
 	}

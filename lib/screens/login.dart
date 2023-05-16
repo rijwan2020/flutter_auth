@@ -6,10 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 
 class Login extends StatefulWidget{
-  	const Login({Key? key}) : super(key: key);
-	@override
-	// ignore: library_private_types_in_public_api
-	_LoginState createState() => _LoginState();
+  const Login({Key? key}) : super(key: key);
+
+  @override
+	State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login>{
@@ -106,13 +106,7 @@ class _LoginState extends State<Login>{
 													}
 												),
 												const SizedBox(height: 12),
-												FlatButton(
-													color: Colors.blueAccent,
-													disabledColor: Colors.grey,
-													shape: RoundedRectangleBorder(
-														borderRadius:
-														BorderRadius.circular(20.0)
-													),
+												ElevatedButton(
 													onPressed: () {
 														if (_formKey.currentState!.validate()) {
 															_login();
@@ -191,13 +185,7 @@ class _LoginState extends State<Login>{
 		if (statusCode == 200) {
 			SharedPreferences localStorage = await SharedPreferences.getInstance();
 			localStorage.setString('token', json.encode(body['token']));
-			// ignore: use_build_context_synchronously
-			Navigator.pushReplacement(
-				context,
-				MaterialPageRoute(
-					builder: (context) => const Home()
-				),
-			);
+      navigationToHome();
 		} else {
 			final error = body['error'];
 			showErrorMsg(error.toString());
@@ -206,5 +194,12 @@ class _LoginState extends State<Login>{
 		setState(() {
 			_isLoading = false;
 		});
+	}
+
+	Future<void> navigationToHome() async{
+		final route = MaterialPageRoute(
+			builder: (context) => const Home(),
+		);
+		await Navigator.push(context, route);
 	}
 }

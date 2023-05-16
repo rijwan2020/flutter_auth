@@ -3,7 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  final url = dotenv.env['REQRES_URL'];
+  // final url = dotenv.env['REQRES_URL'];
+  final url = 'https://reqres.in/api';
 
 	login(data) async{
 		var fullUrl = '$url/login';

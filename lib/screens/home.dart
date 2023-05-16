@@ -108,7 +108,7 @@ class _HomeState extends State<Home>{
 		getListUser();
 	}
 
-  	void logout() async{
+  void logout() async{
 		SharedPreferences localStorage = await SharedPreferences.getInstance();
 		localStorage.remove('user');
 		localStorage.remove('token');
